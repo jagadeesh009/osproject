@@ -1,12 +1,9 @@
-//osproject
 #include<stdio.h>
 int main()
 {
-int i, limit, sum = 0, x, count = 0, timequantum,j;
+int i, limit, sum = 0, n,x, count = 0, timequantum,j;
 int wait = 0, tat = 0,pos,z,p[10],prio[10], a_time[10],
 b_time[10], temp[10],b;
-float avgWait, average_tat;
-
 	  printf("\t\t\t\t\t*****************************************\n");
 	  printf("\t\t\t\t\t\t** Prepared by - JAGADEESH**\n");
 	  printf("\t\t\t\t\t**Reg No. 11702509 Roll No. K17YP - B52 **\n");
@@ -14,6 +11,7 @@ float avgWait, average_tat;
 printf("\nEnter Total Number of Processes:");
 scanf("%d", &limit);
 x = limit;
+n=limit;
 for(i = 0; i < limit; i++)
 {
 p[i]=i+1;
@@ -27,7 +25,7 @@ temp[i] = b_time[i];
 }
 printf("\nEnter the Time Quantum:");
 scanf("%d", &timequantum);
-printf("\nProcess ID\tBurst Time\t Turnaround Time\t Waiting Time\t Priority\n");
+printf("\nProcess ID\tBurst Time\t Turnaround Time\t Waiting Time\n");
 for(sum = 0, i = 0; x != 0;)
 {
 for(z=0;z<limit;z++)
@@ -46,7 +44,8 @@ temp1=b_time[z];
 b_time[z]=b_time[pos];
 b_time[pos]=temp1;
 temp1=a_time[z];
-a_time[z]=a_time[pos];_time[pos]=temp1;
+a_time[z]=a_time[pos];
+a_time[pos]=temp1;
 temp1=p[z];
 p[z]=p[pos];
 p[pos]=temp1;
@@ -77,7 +76,7 @@ prio[b]+=2;
 if(temp[i] == 0 && count == 1)
 {
 x--;
-printf("\nProcess[%d]\t\t%d\t\t %d\t\t %d\t\t%d", p[i],b_time[i], sum-a_time[i], sum-a_time[i]-b_time[i],prio[i]);
+printf("\nProcess[%d]\t\t%d\t\t %d\t\t %d", p[i],b_time[i], sum-a_time[i], sum-a_time[i]-b_time[i]);
 wait = wait+sum-a_time[i]-b_time[i];
 tat = tat+sum-a_time[i];
 count = 0;
@@ -95,5 +94,7 @@ else
 i = 0;
 }
 }
+printf("\n\n\tAverage Waiting Time = %f" , (float)wait/n);
+printf("\n\tAverage Turn Around Time = %f" , (float)tat/n);
 return 0;
 }
